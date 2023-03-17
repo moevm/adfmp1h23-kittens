@@ -1,7 +1,7 @@
 package com.example.kittens_catalog.di
 
+import com.example.kittens_catalog.data.network.RetrofitFactory
 import com.example.kittens_catalog.data.network.api.AuthApi
-import com.x5.courierapp.data.network.RetrofitFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

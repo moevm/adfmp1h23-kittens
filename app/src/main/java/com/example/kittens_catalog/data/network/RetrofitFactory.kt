@@ -1,4 +1,5 @@
-package com.x5.courierapp.data.network
+package com.example.kittens_catalog.data.network
+
 
 import com.example.kittens_catalog.data.network.interceptors.AuthInterceptor
 import com.example.kittens_catalog.data.network.result.ResultAdapterFactory
