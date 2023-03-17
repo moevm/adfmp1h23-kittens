@@ -10,7 +10,7 @@ class AuthRepositoryImpl @Inject constructor(
 ) : AuthRepository {
     override fun auth(login: String, password: String): Boolean {
         val params = AuthRequest(login, password)
-        return authApi.auth(params).success
+        return authApi.auth(params).execute().body()?.success ?: false
     }
 
     override fun whoAmI() {

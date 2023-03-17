@@ -10,7 +10,7 @@ class AuthInterceptor @Inject constructor(): Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         val requestBuilder = chain.request().newBuilder()
         val response = chain.proceed(requestBuilder.build())
-        println(response.header("Cookie"))
+        println(response.header("Set-Cookie"))
         return response
     }
 }

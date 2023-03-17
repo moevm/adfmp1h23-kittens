@@ -23,7 +23,7 @@ class ResultCallback<T>(
         callback.onResponse(proxy, Response.success(result))
     }
     override fun onFailure(call: Call<T>, error: Throwable) {
-        val url = call.request().url().toString()
+        val url = call.request().url.toString()
         val result: Result<T> = when (error) {
             is IOException -> {
                 Result.NetworkError(throwable = Exception(error.message), url = url)

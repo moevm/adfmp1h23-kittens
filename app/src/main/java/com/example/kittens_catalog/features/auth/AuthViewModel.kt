@@ -17,6 +17,6 @@ class AuthViewModel @Inject constructor(
         viewState = viewState.copy(isAuthLoading = true)
         viewModelScope.launch {
             authInteractor.auth(login, password)
-        }
+       }
     }
 }
