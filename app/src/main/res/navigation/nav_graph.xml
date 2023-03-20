@@ -3,10 +3,28 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/authActivity">
+    app:startDestination="@id/mainFragment">
     <fragment
-        android:id="@+id/authActivity"
+        android:id="@+id/auth_fragment"
         android:name="com.example.kittens_catalog.features.auth.AuthFragment"
-        android:label="login_fragment"
-        tools:layout="@layout/login_fragment" />
+        android:label="auth_fragment"
+        tools:layout="@layout/fragment_auth" />
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.example.kittens_catalog.features.main.MainFragment"
+        android:label="MainFragment"
+        tools:layout="@layout/activity_main"
+        >
+        <action
+            android:id="@+id/action_mainFragment_to_auth_fragment"
+            app:destination="@id/auth_fragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_breedingFragment"
+            app:destination="@id/breeding_fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/breeding_fragment"
+        android:name="com.example.kittens_catalog.features.breeding.BreedingFragment"
+        android:label="fragment_breeding"
+        tools:layout="@layout/fragment_breeding" />
 </navigation>

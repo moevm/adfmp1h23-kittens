@@ -1,6 +1,7 @@
 package com.example.kittens_catalog.data.repository
 import com.example.kittens_catalog.data.network.api.AuthApi
 import com.example.kittens_catalog.data.network.models.AuthRequest
+import com.example.kittens_catalog.data.network.models.WhoAmIResponse
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -13,7 +14,7 @@ class AuthRepositoryImpl @Inject constructor(
         return authApi.auth(params).execute().body()?.success ?: false
     }
 
-    override fun whoAmI() {
-        TODO("Not yet implemented")
+    override fun whoAmI(): WhoAmIResponse? {
+        return authApi.whoAmI().execute().body()
     }
 }

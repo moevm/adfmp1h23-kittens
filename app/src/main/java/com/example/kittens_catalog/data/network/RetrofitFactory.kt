@@ -2,6 +2,7 @@ package com.example.kittens_catalog.data.network
 
 
 import com.example.kittens_catalog.data.network.interceptors.AuthInterceptor
+import com.example.kittens_catalog.data.network.interceptors.CommonInterceptor
 import com.example.kittens_catalog.data.network.result.ResultAdapterFactory
 import com.squareup.moshi.Moshi
 import okhttp3.OkHttpClient
@@ -15,6 +16,7 @@ import javax.inject.Singleton
 class RetrofitFactory @Inject constructor(
     private val callFactory: ResultAdapterFactory,
     private val authInterceptor: AuthInterceptor,
+    private val commonInterceptor: CommonInterceptor,
     private val moshi: Moshi,
 ) {
     private var authRetrofitBuilder: Retrofit.Builder? = null
@@ -34,6 +36,7 @@ class RetrofitFactory @Inject constructor(
         readTimeout(60, TimeUnit.SECONDS)
         writeTimeout(60, TimeUnit.SECONDS)
         cache(null)
+        addInterceptor(commonInterceptor)
         addInterceptor(authInterceptor)
 //        if (withAuth) addInterceptor(tokenInterceptor) if interceptors come out to play
     }.build()

@@ -6,13 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.example.kittens_catalog.databinding.LoginFragmentBinding
+import com.example.kittens_catalog.databinding.FragmentAuthBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class AuthFragment: Fragment() {
 
-    private var _binding: LoginFragmentBinding? = null
+    private var _binding: FragmentAuthBinding? = null
     private val  binding get() = _binding!!
 
     private val viewModel: AuthViewModel by viewModels()
@@ -21,14 +21,13 @@ class AuthFragment: Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = LoginFragmentBinding.inflate(layoutInflater)
+        _binding = FragmentAuthBinding.inflate(layoutInflater)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.button.setOnClickListener {
-            println("lol!")
             viewModel.auth(binding.loginField.text.toString(), binding.passwordField.text.toString())
         }
     }

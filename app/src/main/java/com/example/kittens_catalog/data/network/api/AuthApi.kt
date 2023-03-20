@@ -12,5 +12,5 @@ interface AuthApi {
     fun auth(@Body authParams: AuthRequest): Call<AuthResponse>
 
     @GET("/who-am-i")
-    fun whoAmI(): WhoAmIResponse
+    fun whoAmI(): Call<WhoAmIResponse?>
 }

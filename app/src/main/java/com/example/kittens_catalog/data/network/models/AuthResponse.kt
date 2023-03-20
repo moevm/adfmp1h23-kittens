@@ -4,21 +4,21 @@ import com.squareup.moshi.FromJson
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.JsonClass
 import com.squareup.moshi.JsonReader
+import java.io.IOException
 
 @JsonClass(generateAdapter = true)
 data class AuthResponse (
     val success: Boolean,
 )
+
 class AuthResponseAdapter {
     @FromJson
-    fun fromJson(reader: JsonReader, authResponseAdapter: JsonAdapter<AuthResponse>): AuthResponse {
-        val readerCopy = reader.peekJson()
-        var success: Boolean = false
-        while(readerCopy.hasNext()) {
-            when(readerCopy.nextName()) {
-                "success" -> success = readerCopy.nextBoolean()
-            }
+    fun fromJson(reader: JsonReader, authResponseAdapter: JsonAdapter<AuthResponse>): AuthResponse? {
+        try {
+            reader.peekJson().beginObject()
+        } catch (err: IOException) {
+            return null
         }
-        return AuthResponse(success = success)
+        return authResponseAdapter.fromJson(reader)
     }
 }

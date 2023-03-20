@@ -5,8 +5,7 @@
     android:id="@+id/containerAuth"
     android:layout_width="match_parent"
     android:layout_marginHorizontal="16dp"
-    android:layout_height="match_parent"
-    tools:context=".features.auth.AuthActivity">
+    android:layout_height="match_parent">
 
     <FrameLayout
         android:id="@+id/base_layout_container"
@@ -75,4 +74,16 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password_field" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="96dp"
+        android:text="Or you may sign up..."
+        android:textAlignment="center"
+        android:textColor="@color/yellow"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button"
+        app:layout_constraintVertical_bias="0.007"
+        tools:layout_editor_absoluteX="124dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
