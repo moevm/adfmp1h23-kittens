@@ -1,14 +1,19 @@
 package com.example.kittens_catalog.features.breeding
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.webkit.CookieManager
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import androidx.preference.PreferenceManager
+import dagger.hilt.android.qualifiers.ApplicationContext
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class BreedingViewModel : ViewModel() {
+class BreedingViewModel @Inject constructor(private val preferences: SharedPreferences): ViewModel() {
     fun logOut() {
-        val cookieManager = CookieManager.getInstance()
-        val cookie = cookieManager.getCookie("10.0.0.2:3001")
-        if (cookie != null) {
-            cookieManager.setCookie("10.0.0.2:3001", null)
+        viewModelScope.launch {
+            preferences.edit().putString("token", "").apply()
         }
     }
 }

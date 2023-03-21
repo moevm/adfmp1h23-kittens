@@ -35,9 +35,4 @@ class MainViewModel @Inject constructor(
             if (me != null) _personalData.value = me
         }
     }
-
-    fun unAuthorize() {
-        _personalData.value = null
-        _isAuthenticated.value = false
-    }
 }
