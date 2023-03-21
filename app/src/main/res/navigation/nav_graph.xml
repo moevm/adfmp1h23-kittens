@@ -8,7 +8,11 @@
         android:id="@+id/auth_fragment"
         android:name="com.example.kittens_catalog.features.auth.AuthFragment"
         android:label="auth_fragment"
-        tools:layout="@layout/fragment_auth" />
+        tools:layout="@layout/fragment_auth" >
+        <action
+            android:id="@+id/action_auth_fragment_to_breeding_fragment"
+            app:destination="@id/breeding_fragment" />
+    </fragment>
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.example.kittens_catalog.features.main.MainFragment"

@@ -10,6 +10,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val authInteractor: AuthInteractor
@@ -28,11 +29,18 @@ class MainViewModel @Inject constructor(
         whoAmI()
     }
 
-    fun whoAmI() {
+    fun whoAmI(): LiveData<Boolean> {
         viewModelScope.launch {
             val me = authInteractor.whoAmI()
             _isAuthenticated.value = me != null
             if (me != null) _personalData.value = me
         }
+        return isAuthenticated
+    }
+
+    fun logOut(): LiveData<Boolean> {
+        _isAuthenticated.value = false
+        _personalData.value = null
+        return isAuthenticated
     }
 }

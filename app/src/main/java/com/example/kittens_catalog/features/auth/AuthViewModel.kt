@@ -13,10 +13,12 @@ class AuthViewModel @Inject constructor(
     private val authInteractor: AuthInteractor
 ): ViewModel() {
     private var viewState: AuthState = AuthState()
-    fun auth(login: String, password: String) {
+    fun auth(login: String, password: String): Boolean {
         viewState = viewState.copy(isAuthLoading = true)
+        var auth = false
         viewModelScope.launch {
-            authInteractor.auth(login, password)
+            auth = authInteractor.auth(login, password)
        }
+        return auth
     }
 }
