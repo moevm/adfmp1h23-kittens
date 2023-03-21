@@ -32,5 +32,7 @@ ext.versions = [
         //Testing
         jUnitVersion       : '4.13.2',
         runnerVersion      : '1.1.5',
-        espressoVersion    : '3.5.1'
+        espressoVersion    : '3.5.1',
+
+        picassoVersion     : '2.71828'
 ]
