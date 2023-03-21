@@ -18,19 +18,8 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.runBlocking
 
 @AndroidEntryPoint
-class MainFragment: BaseFragment() {
-    private var _binding: FragmentMainBinding? = null
-    private val  binding get() = _binding!!
-
+class MainFragment: BaseFragment<FragmentMainBinding>() {
     private val viewModel: MainViewModel by viewModels()
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentMainBinding.inflate(layoutInflater)
-        return binding.root
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -55,5 +44,9 @@ class MainFragment: BaseFragment() {
             }
         }
         Toast.makeText(requireContext(), "auth: ${viewModel.isAuthenticated.value} data: ${viewModel.personalData.value?.lastName}", Toast.LENGTH_LONG).show()
+    }
+
+    override fun setupViewBinding(inflater: LayoutInflater): FragmentMainBinding {
+        return FragmentMainBinding.inflate(inflater)
     }
 }

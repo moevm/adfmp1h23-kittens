@@ -12,6 +12,9 @@
         <action
             android:id="@+id/action_auth_fragment_to_breeding_fragment"
             app:destination="@id/breeding_fragment" />
+        <action
+            android:id="@+id/action_auth_fragment_to_registrationFragment"
+            app:destination="@id/registrationFragment" />
     </fragment>
     <fragment
         android:id="@+id/mainFragment"
@@ -31,4 +34,9 @@
         android:name="com.example.kittens_catalog.features.breeding.BreedingFragment"
         android:label="fragment_breeding"
         tools:layout="@layout/fragment_breeding" />
+    <fragment
+        android:id="@+id/registrationFragment"
+        android:name="com.example.kittens_catalog.features.registration.RegistrationFragment"
+        android:label="fragment_registration"
+        tools:layout="@layout/fragment_registration" />
 </navigation>

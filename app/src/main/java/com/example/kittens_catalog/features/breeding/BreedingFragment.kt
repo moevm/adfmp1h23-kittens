@@ -16,28 +16,17 @@ import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
-class BreedingFragment : BaseFragment() {
-    private var _binding: FragmentBreedingBinding? = null
-    private val  binding get() = _binding!!
+class BreedingFragment : BaseFragment<FragmentBreedingBinding>() {
 
     private val viewModel: BreedingViewModel by viewModels()
-    private val mainViewModel: MainViewModel by activityViewModels()
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentBreedingBinding.inflate(layoutInflater)
-        return binding.root
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mainViewModel.doRefresh()
+        baseViewModel.doRefresh()
         subscribeUi()
         binding.logOutButton.setOnClickListener {
             viewModel.logOut()
-            mainViewModel.logOut().observe(viewLifecycleOwner) {
+            baseViewModel.logOut().observe(viewLifecycleOwner) {
                 if (!it) {
                     navController.navigate(R.id.mainFragment)
                 } else {
@@ -46,12 +35,17 @@ class BreedingFragment : BaseFragment() {
             }
         }
     }
-    fun subscribeUi() {
-        mainViewModel.personalData.observe(viewLifecycleOwner) {
+
+    private fun subscribeUi() {
+        baseViewModel.personalData.observe(viewLifecycleOwner) {
             if (it != null) {
                 Glide.with(this).load(it.picture).into(binding.avatar);
                 binding.username.text = "${it?.firstName} ${it?.lastName}"
             }
         }
+    }
+
+    override fun setupViewBinding(inflater: LayoutInflater): FragmentBreedingBinding {
+        return FragmentBreedingBinding.inflate(inflater)
     }
 }

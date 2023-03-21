@@ -13,7 +13,7 @@ import java.util.*
 @JsonClass(generateAdapter = true)
 data class WhoAmIResponse(
     val about: String?,
-    val birthDate: Date,
+    val birthDate: Date?,
     val created: Date,
     val updated: Date,
     val firstName: String,

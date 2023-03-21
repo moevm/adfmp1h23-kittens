@@ -1,6 +1,7 @@
 package com.example.kittens_catalog.data.network.api
 import com.example.kittens_catalog.data.network.models.AuthRequest
 import com.example.kittens_catalog.data.network.models.AuthResponse
+import com.example.kittens_catalog.data.network.models.RegisterRequest
 import com.example.kittens_catalog.data.network.models.WhoAmIResponse
 import retrofit2.Call
 import retrofit2.http.Body
@@ -13,4 +14,7 @@ interface AuthApi {
 
     @GET("/who-am-i")
     fun whoAmI(): Call<WhoAmIResponse?>
+
+    @POST("/register")
+    fun register(@Body registerParams: RegisterRequest): Call<AuthResponse>
 }

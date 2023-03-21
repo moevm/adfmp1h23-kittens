@@ -4,6 +4,7 @@ import android.content.SharedPreferences
 import androidx.preference.PreferenceManager
 import com.example.kittens_catalog.data.network.api.AuthApi
 import com.example.kittens_catalog.data.network.models.AuthRequest
+import com.example.kittens_catalog.data.network.models.RegisterRequest
 import com.example.kittens_catalog.data.network.models.WhoAmIResponse
 import com.example.kittens_catalog.di.SharedPreferencesModule
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -26,5 +27,16 @@ class AuthRepositoryImpl @Inject constructor(
 
     override fun whoAmI(): WhoAmIResponse? {
         return authApi.whoAmI().execute().body()
+    }
+
+    override fun register(
+        login: String,
+        lastName: String,
+        firstName: String,
+        password: String
+    ): Boolean {
+        val params = RegisterRequest(login = login, lastName = lastName, firstName = firstName, password = password)
+        val res = authApi.register(params).execute()
+        return res.body()?.success ?: false
     }
 }

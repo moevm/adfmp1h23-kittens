@@ -14,20 +14,9 @@ import com.example.kittens_catalog.features.main.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class AuthFragment: BaseFragment() {
-
-    private var _binding: FragmentAuthBinding? = null
-    private val  binding get() = _binding!!
+class AuthFragment: BaseFragment<FragmentAuthBinding>() {
 
     private val viewModel: AuthViewModel by viewModels()
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentAuthBinding.inflate(layoutInflater)
-        return binding.root
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -36,9 +25,16 @@ class AuthFragment: BaseFragment() {
             baseViewModel.doRefresh()
             if (auth) {
                 navController.navigate(R.id.mainFragment)
-//                navigate(R.id.auth_fragment, AuthFragmentDirections.actionAuthFragmentToBreedingFragment())
             }
         }
+        binding.signUp.setOnClickListener {
+            navController.navigate(R.id.registrationFragment)
+        }
     }
+
+    override fun setupViewBinding(inflater: LayoutInflater): FragmentAuthBinding {
+        return FragmentAuthBinding.inflate(inflater)
+    }
+
 
 }

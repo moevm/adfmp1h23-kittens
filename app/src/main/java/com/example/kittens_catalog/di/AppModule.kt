@@ -1,9 +1,6 @@
 package com.example.kittens_catalog.di
 
-import com.example.kittens_catalog.data.network.models.AuthRequestAdapter
-import com.example.kittens_catalog.data.network.models.AuthResponse
-import com.example.kittens_catalog.data.network.models.AuthResponseAdapter
-import com.example.kittens_catalog.data.network.models.WhoAmIResponseAdapter
+import com.example.kittens_catalog.data.network.models.*
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.adapters.Rfc3339DateJsonAdapter
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -28,5 +25,6 @@ object AppModule {
         .add(AuthRequestAdapter())
         .add(AuthResponseAdapter())
         .add(WhoAmIResponseAdapter())
+        .add(RegisterRequestAdapter())
         .build()
 }
