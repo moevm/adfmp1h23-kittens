@@ -17,4 +17,10 @@ interface AuthApi {
 
     @POST("/kitten/get")
     fun getKittens(@Body kittenFilterParams: KittenFilterRequest): Call<List<KittenItem>?>
+
+    @POST("/kitten/get-mine")
+    fun getMineKittens(@Body kittenFilterParams: KittenFilterRequest): Call<List<KittenItem>?>
+
+    @GET("/kitten/get-breeds")
+    fun getBreeds(): Call<List<String>>
 }

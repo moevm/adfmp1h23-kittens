@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="16dp"
-    android:layout_marginVertical="10dp">
+    android:layout_marginVertical="10dp"
+    android:background="@color/yellowIns">
 
     <ImageView
         android:id="@+id/item_image"
@@ -20,9 +21,14 @@
         android:id="@+id/item_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="23dp"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="216dp"
-        android:text="TextView"
+        android:fontFamily="@font/sono_extra_bold"
+        android:text="Meow"
+        android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/item_image"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

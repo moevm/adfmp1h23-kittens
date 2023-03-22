@@ -13,10 +13,15 @@ import javax.inject.Inject
 class KittenListViewModel @Inject constructor(private val authInteractor: AuthInteractor): ViewModel() {
     private val _kittensData = MutableLiveData<List<KittenItem>?>(null)
     val kittenData: LiveData<List<KittenItem>?> get() = _kittensData
+    private val _breeds = MutableLiveData<List<String>?>(null)
+    val breeds: LiveData<List<String>?> get() = _breeds
 
-    fun getKittens(): LiveData<List<KittenItem>?> {
-        val kittens = authInteractor.getKittens("string", "string", BirthDate("2001-03-16T18:12:17.397Z", "2026-03-16T18:12:17.397Z"))
+
+    fun getInitialData(city: String?, breed: String?, name: String?, birthDate: BirthDate?): LiveData<List<KittenItem>?> {
+        val kittens = authInteractor.getKittens(city, breed, name, birthDate)
+        val breeds = authInteractor.getBreeds()
         _kittensData.value = kittens
+        _breeds.value = breeds
         return _kittensData
     }
 }

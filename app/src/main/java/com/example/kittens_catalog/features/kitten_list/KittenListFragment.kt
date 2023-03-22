@@ -1,17 +1,12 @@
 package com.example.kittens_catalog.features.kitten_list
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.kittens_catalog.R
 import com.example.kittens_catalog.databinding.FragmentKittenListBinding
 import com.example.kittens_catalog.features.base.BaseFragment
-import com.example.kittens_catalog.features.breeding.BreedingViewModel
-import com.example.kittens_catalog.features.main.MainFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -41,8 +36,9 @@ class KittenListFragment : BaseFragment<FragmentKittenListBinding>() {
     }
 
     fun subscribeUi() {
-        viewModel.getKittens().observe(viewLifecycleOwner) {
+        viewModel.getInitialData(null, null, null, null).observe(viewLifecycleOwner) {
             kittenAdapter.setData(it)
+            println(viewModel.breeds)
         }
         binding.kittenList.adapter = kittenAdapter
     }

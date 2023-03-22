@@ -17,7 +17,11 @@ class AuthInteractor @Inject constructor(private val authRepository: AuthReposit
         return authRepository.register(login, lastName, firstName, password)
     }
 
-    fun getKittens(city: String?, breed: String?, birthDate: BirthDate?): List<KittenItem>? {
-        return authRepository.getKitten(KittenFilterRequest(birthDate, breed, city))
+    fun getKittens(city: String?, breed: String?, name: String?, birthDate: BirthDate?): List<KittenItem>? {
+        return authRepository.getKitten(KittenFilterRequest(birthDate, breed, city, name))
+    }
+
+    fun getBreeds(): List<String>? {
+        return authRepository.getBreed()
     }
 }

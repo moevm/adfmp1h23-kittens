@@ -38,4 +38,8 @@ class AuthRepositoryImpl @Inject constructor(
         val kittens = authApi.getKittens(filter).execute().body()
         return kittens
     }
+
+    override fun getBreed(): List<String>? {
+        return authApi.getBreeds().execute().body()
+    }
 }

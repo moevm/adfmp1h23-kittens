@@ -9,4 +9,5 @@ interface AuthRepository {
     fun whoAmI(): WhoAmIResponse?
     fun register(login: String, lastName: String, firstName: String, password: String): Boolean
     fun getKitten(filter: KittenFilterRequest): List<KittenItem>?
+    fun getBreed(): List<String>?
 }
