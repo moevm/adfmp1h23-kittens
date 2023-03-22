@@ -22,9 +22,5 @@ object AppModule {
     @Provides
     fun provideMoshi(): Moshi = Moshi.Builder()
         .add(Date()::class.java, Rfc3339DateJsonAdapter())
-        .add(AuthRequestAdapter())
-        .add(AuthResponseAdapter())
-        .add(WhoAmIResponseAdapter())
-        .add(RegisterRequestAdapter())
         .build()
 }

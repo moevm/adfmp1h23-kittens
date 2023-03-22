@@ -5,6 +5,7 @@ import com.example.kittens_catalog.data.network.interceptors.CommonInterceptor
 import com.example.kittens_catalog.data.network.result.ResultAdapterFactory
 import com.squareup.moshi.Moshi
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
@@ -34,7 +35,9 @@ class RetrofitFactory @Inject constructor(
         readTimeout(60, TimeUnit.SECONDS)
         writeTimeout(60, TimeUnit.SECONDS)
         cache(null)
+        val logging = HttpLoggingInterceptor()
+        logging.level = HttpLoggingInterceptor.Level.BODY
+        addInterceptor(logging)
         addInterceptor(commonInterceptor)
-//        if (withAuth) addInterceptor(tokenInterceptor) if interceptors come out to play
     }.build()
 }

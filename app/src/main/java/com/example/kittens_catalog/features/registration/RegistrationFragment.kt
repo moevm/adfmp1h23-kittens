@@ -32,6 +32,8 @@ class RegistrationFragment : BaseFragment<FragmentRegistrationBinding>() {
             val res = viewModel.register(login, lastName, firstName, password)
             if (res) {
                 Toast.makeText(requireContext(), "You are successfully registered", Toast.LENGTH_LONG).show()
+            } else {
+                Toast.makeText(requireContext(), "Some error occurred while registration", Toast.LENGTH_LONG).show()
             }
         }
     }

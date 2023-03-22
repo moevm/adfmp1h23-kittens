@@ -43,6 +43,9 @@ class BreedingFragment : BaseFragment<FragmentBreedingBinding>() {
                 binding.username.text = "${it?.firstName} ${it?.lastName}"
             }
         }
+        binding.kittensCatalog.setOnClickListener {
+            navigate(R.id.breeding_fragment, BreedingFragmentDirections.actionBreedingFragmentToKittenListFragment())
+        }
     }
 
     override fun setupViewBinding(inflater: LayoutInflater): FragmentBreedingBinding {

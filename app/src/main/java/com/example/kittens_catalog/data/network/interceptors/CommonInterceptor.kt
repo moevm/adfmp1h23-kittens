@@ -16,6 +16,8 @@ class CommonInterceptor @Inject constructor(private val preferences: SharedPrefe
         if(cookie != "" && cookie != null) {
             requestBuilder.addHeader("Cookie", cookie)
         }
-        return chain.proceed(requestBuilder.build())
+        val res = chain.proceed(requestBuilder.build())
+        println(res.request.body)
+        return res
     }
 }

@@ -1,8 +1,5 @@
 package com.example.kittens_catalog.data.network.api
-import com.example.kittens_catalog.data.network.models.AuthRequest
-import com.example.kittens_catalog.data.network.models.AuthResponse
-import com.example.kittens_catalog.data.network.models.RegisterRequest
-import com.example.kittens_catalog.data.network.models.WhoAmIResponse
+import com.example.kittens_catalog.data.network.models.*
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -17,4 +14,7 @@ interface AuthApi {
 
     @POST("/register")
     fun register(@Body registerParams: RegisterRequest): Call<AuthResponse>
+
+    @POST("/kitten/get")
+    fun getKittens(@Body kittenFilterParams: KittenFilterRequest): Call<List<KittenItem>?>
 }

@@ -33,10 +33,19 @@
         android:id="@+id/breeding_fragment"
         android:name="com.example.kittens_catalog.features.breeding.BreedingFragment"
         android:label="fragment_breeding"
-        tools:layout="@layout/fragment_breeding" />
+        tools:layout="@layout/fragment_breeding" >
+        <action
+            android:id="@+id/action_breeding_fragment_to_kittenListFragment"
+            app:destination="@id/kittenListFragment" />
+    </fragment>
     <fragment
         android:id="@+id/registrationFragment"
         android:name="com.example.kittens_catalog.features.registration.RegistrationFragment"
         android:label="fragment_registration"
         tools:layout="@layout/fragment_registration" />
+    <fragment
+        android:id="@+id/kittenListFragment"
+        android:name="com.example.kittens_catalog.features.kitten_list.KittenListFragment"
+        android:label="fragment_kitten_list"
+        tools:layout="@layout/fragment_kitten_list" />
 </navigation>
