@@ -8,6 +8,10 @@ import com.bumptech.glide.Glide
 import com.example.kittens_catalog.data.network.models.KittenItem
 import com.example.kittens_catalog.databinding.KittenListItemBinding
 import com.example.kittens_catalog.domain.interactors.AuthInteractor
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.util.*
 
 class KittenListAdapter :
     RecyclerView.Adapter<KittenListAdapter.KittenHolder>() {
@@ -24,6 +28,8 @@ class KittenListAdapter :
         fun bind(item: KittenItem) {
             with(binding) {
                     itemText.text = item.name
+                    val formatter = SimpleDateFormat("yyyy-MM-dd")
+                    shortAbout.text = "Breed: ${item.breed}, Birth Date: ${formatter.format(formatter.parse(item.birthDate))}"
                     Glide.with(root).load(item.picture).into(itemImage);
                 }
             }
