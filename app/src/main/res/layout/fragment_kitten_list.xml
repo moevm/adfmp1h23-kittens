@@ -6,16 +6,40 @@
     android:layout_height="match_parent"
     tools:context=".features.kitten_list.KittenListFragment">
 
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/searchAssets"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:focusable="false"
+        android:inputType="text"
+        android:longClickable="false"
+        app:iconifiedByDefault="false"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:queryBackground="@android:color/transparent" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/kittenList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="112dp"
+        android:layout_marginTop="12dp"
         android:clipToPadding="false"
         android:paddingTop="10dp"
         android:scrollbars="none"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/breeds" />
+
+    <Button
+        android:id="@+id/breeds"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:text="Breeds"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchAssets" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -16,12 +16,20 @@ class KittenListViewModel @Inject constructor(private val authInteractor: AuthIn
     private val _breeds = MutableLiveData<List<String>?>(null)
     val breeds: LiveData<List<String>?> get() = _breeds
 
+    fun init() {
+        _breeds.value = authInteractor.getBreeds()
+    }
 
-    fun getInitialData(city: String?, breed: String?, name: String?, birthDate: BirthDate?): LiveData<List<KittenItem>?> {
+    fun search(
+        city: String?,
+        breed: String?,
+        name: String?,
+        birthDate: BirthDate?
+    ): LiveData<List<KittenItem>?> {
         val kittens = authInteractor.getKittens(city, breed, name, birthDate)
-        val breeds = authInteractor.getBreeds()
+//        val breeds = authInteractor.getBreeds()
         _kittensData.value = kittens
-        _breeds.value = breeds
+//        _breeds.value = breeds
         return _kittensData
     }
 }

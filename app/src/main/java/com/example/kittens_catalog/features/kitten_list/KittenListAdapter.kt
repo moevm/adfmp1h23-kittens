@@ -22,6 +22,7 @@ class KittenListAdapter:
         state.clear()
         if(kittenList != null)
             state.addAll(kittenList)
+        notifyDataSetChanged()
     }
 
     inner class KittenHolder(private val binding: KittenListItemBinding) : RecyclerView.ViewHolder(binding.root) {
