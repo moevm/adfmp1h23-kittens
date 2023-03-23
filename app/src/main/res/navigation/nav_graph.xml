@@ -47,5 +47,19 @@
         android:id="@+id/kittenListFragment"
         android:name="com.example.kittens_catalog.features.kitten_list.KittenListFragment"
         android:label="fragment_kitten_list"
-        tools:layout="@layout/fragment_kitten_list" />
+        tools:layout="@layout/fragment_kitten_list" >
+        <action
+            android:id="@+id/action_kittenListFragment_to_kittenFragment"
+            app:destination="@id/kittenFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/kittenFragment"
+        android:name="com.example.kittens_catalog.features.kitten.KittenFragment"
+        android:label="fragment_kitten"
+        tools:layout="@layout/fragment_kitten">
+        <argument
+            android:defaultValue="-1"
+            android:name="id"
+            app:argType="integer"/>
+    </fragment>
 </navigation>

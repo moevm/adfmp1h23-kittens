@@ -24,4 +24,8 @@ class AuthInteractor @Inject constructor(private val authRepository: AuthReposit
     fun getBreeds(): List<String>? {
         return authRepository.getBreed()
     }
+
+    fun getOne(id: Int): KittenItem? {
+        return authRepository.getOne(id)
+    }
 }

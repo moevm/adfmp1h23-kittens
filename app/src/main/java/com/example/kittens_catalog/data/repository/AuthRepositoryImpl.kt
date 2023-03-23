@@ -42,4 +42,8 @@ class AuthRepositoryImpl @Inject constructor(
     override fun getBreed(): List<String>? {
         return authApi.getBreeds().execute().body()
     }
+
+    override fun getOne(id: Int): KittenItem? {
+        return authApi.getOne(id).execute().body()
+    }
 }

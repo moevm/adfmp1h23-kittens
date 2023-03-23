@@ -5,12 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.kittens_catalog.R
 import com.example.kittens_catalog.databinding.FragmentKittenListBinding
 import com.example.kittens_catalog.features.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class KittenListFragment : BaseFragment<FragmentKittenListBinding>() {
+
     private val kittenAdapter by lazy {
         KittenListAdapter()
     }
@@ -33,6 +35,7 @@ class KittenListFragment : BaseFragment<FragmentKittenListBinding>() {
         val layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         binding.kittenList.layoutManager = layoutManager
         binding.kittenList.adapter = kittenAdapter
+        kittenAdapter.clickListener = { kittenItem -> navigateToKitten(kittenItem.id) }
     }
 
     fun subscribeUi() {
@@ -41,5 +44,9 @@ class KittenListFragment : BaseFragment<FragmentKittenListBinding>() {
             println(viewModel.breeds)
         }
         binding.kittenList.adapter = kittenAdapter
+    }
+
+    private fun navigateToKitten(id: Int) {
+       navigate(R.id.kittenListFragment, KittenListFragmentDirections.actionKittenListFragmentToKittenFragment(id))
     }
 }

@@ -13,15 +13,15 @@ import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.util.*
 
-class KittenListAdapter :
+class KittenListAdapter:
     RecyclerView.Adapter<KittenListAdapter.KittenHolder>() {
     private val state: MutableList<KittenItem> = mutableListOf()
+    lateinit var clickListener: (KittenItem) -> Unit
 
     fun setData(kittenList: List<KittenItem>?) {
         state.clear()
         if(kittenList != null)
             state.addAll(kittenList)
-//        notifyDataSetChanged()
     }
 
     inner class KittenHolder(private val binding: KittenListItemBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -30,7 +30,10 @@ class KittenListAdapter :
                     itemText.text = item.name
                     val formatter = SimpleDateFormat("yyyy-MM-dd")
                     shortAbout.text = "Breed: ${item.breed}, Birth Date: ${formatter.format(formatter.parse(item.birthDate))}"
-                    Glide.with(root).load(item.picture).into(itemImage);
+                    Glide.with(root).load(item.picture).into(itemImage)
+                    kittenItemBox.setOnClickListener {
+                        clickListener.invoke(item)
+                    }
                 }
             }
         }
@@ -38,6 +41,7 @@ class KittenListAdapter :
     override fun onBindViewHolder(holder: KittenHolder, position: Int) {
         val item = state[position]
         holder.bind(item)
+        holder.itemView.setOnClickListener { clickListener(item) }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): KittenHolder {
