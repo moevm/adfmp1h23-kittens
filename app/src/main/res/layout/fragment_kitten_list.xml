@@ -23,16 +23,14 @@
         android:id="@+id/kittenList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="8dp"
         android:clipToPadding="false"
         android:paddingTop="10dp"
         android:scrollbars="none"
-        app:layout_constraintBottom_toTopOf="@+id/addKittenButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/breeds"
-        app:layout_constraintVertical_bias="0.016" />
+        app:layout_constraintTop_toBottomOf="@+id/slider" />
 
     <Button
         android:id="@+id/breeds"
@@ -54,5 +52,30 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/yearPicker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="12dp"
+        android:text="Year"
+        app:layout_constraintStart_toEndOf="@+id/breeds"
+        app:layout_constraintTop_toBottomOf="@+id/searchAssets" />
+
+
+    <com.google.android.material.slider.RangeSlider
+        android:id="@+id/slider"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="32dp"
+        android:visibility="gone"
+        android:stepSize="1.0"
+        android:valueFrom="0.0"
+        android:valueTo="25.0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/yearPicker"
+        app:values="@array/slider_values" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

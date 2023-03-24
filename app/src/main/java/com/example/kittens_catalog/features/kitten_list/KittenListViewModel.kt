@@ -33,6 +33,10 @@ class KittenListViewModel @Inject constructor(private val authInteractor: AuthIn
         _screenType.value = type
     }
 
+    fun clearBirthDate() {
+        _states.value?.birthDate = null
+    }
+
     fun setStates(name: String?, city: String?, breed: String?, birthDate: BirthDate?): LiveData<KittenStates?> {
         _states.value = KittenStates(
             name = name ?: states.value?.name,
