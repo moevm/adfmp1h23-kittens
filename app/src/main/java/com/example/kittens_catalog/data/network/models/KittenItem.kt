@@ -2,6 +2,7 @@ package com.example.kittens_catalog.data.network.models
 
 import com.squareup.moshi.*
 
+
 @JsonClass(generateAdapter = true)
 data class KittenItem(
     @Json(name = "about") val about: String,

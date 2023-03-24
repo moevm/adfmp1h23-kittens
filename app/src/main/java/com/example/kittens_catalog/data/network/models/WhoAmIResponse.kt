@@ -7,6 +7,7 @@ import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
+
 @JsonClass(generateAdapter = true)
 data class WhoAmIResponse(
     @Json(name = "about") val about: String?,
