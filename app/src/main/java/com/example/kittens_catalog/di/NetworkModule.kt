@@ -15,7 +15,7 @@ class NetworkModule {
     @Provides
     fun authApi(retrofitFactory: RetrofitFactory): AuthApi = retrofitFactory
         .createRetrofitBuilder()
-        .baseUrl("http://10.0.2.2:3001")
+        .baseUrl("http://46.101.125.110:3001")
         .build()
         .create(AuthApi::class.java)
 }

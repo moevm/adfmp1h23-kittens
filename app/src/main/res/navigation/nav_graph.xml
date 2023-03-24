@@ -48,6 +48,11 @@
         android:name="com.example.kittens_catalog.features.kitten_list.KittenListFragment"
         android:label="fragment_kitten_list"
         tools:layout="@layout/fragment_kitten_list" >
+        <argument
+            android:name="type"
+            app:argType="boolean"
+            android:defaultValue="false"
+            />
         <action
             android:id="@+id/action_kittenListFragment_to_kittenFragment"
             app:destination="@id/kittenFragment" />

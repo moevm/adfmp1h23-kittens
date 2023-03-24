@@ -13,7 +13,7 @@ data class KittenItem(
     @Json(name = "hidden") val hidden: Boolean,
     @Json(name = "id") val id: Int,
     @Json(name = "name") val name: String,
-    @Json(name = "picture") val picture: String,
+    @Json(name = "picture") val picture: String?,
     @Json(name = "price") val price: Int,
     @Json(name = "userId") val userId: Int
 )

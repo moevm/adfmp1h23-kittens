@@ -6,5 +6,5 @@ data class KittenStates (
     val name: String?,
     val breed: String?,
     val city: String?,
-    val birthDate: BirthDate
+    val birthDate: BirthDate?
         )

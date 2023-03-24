@@ -46,6 +46,9 @@ class BreedingFragment : BaseFragment<FragmentBreedingBinding>() {
         binding.kittensCatalog.setOnClickListener {
             navigate(R.id.breeding_fragment, BreedingFragmentDirections.actionBreedingFragmentToKittenListFragment())
         }
+        binding.myCatsButton.setOnClickListener {
+            navigate(R.id.breeding_fragment, BreedingFragmentDirections.actionBreedingFragmentToKittenListFragment(true))
+        }
     }
 
     override fun setupViewBinding(inflater: LayoutInflater): FragmentBreedingBinding {

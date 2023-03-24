@@ -5,12 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import androidx.appcompat.widget.PopupMenu
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kittens_catalog.R
 import com.example.kittens_catalog.databinding.FragmentKittenListBinding
 import com.example.kittens_catalog.features.base.BaseFragment
+import com.example.kittens_catalog.features.kitten.KittenFragmentArgs
 import dagger.hilt.android.AndroidEntryPoint
-import kotlin.reflect.jvm.internal.impl.types.AbstractTypeCheckerContext.SupertypesPolicy.None
 
 
 @AndroidEntryPoint
@@ -21,6 +22,7 @@ class KittenListFragment : BaseFragment<FragmentKittenListBinding>() {
     }
 
     private val viewModel: KittenListViewModel by viewModels()
+    private val args: KittenListFragmentArgs by navArgs()
 
 
     override fun setupViewBinding(inflater: LayoutInflater): FragmentKittenListBinding {
@@ -38,6 +40,7 @@ class KittenListFragment : BaseFragment<FragmentKittenListBinding>() {
         val layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         binding.kittenList.layoutManager = layoutManager
         binding.kittenList.adapter = kittenAdapter
+        viewModel.setScreenType(args.type)
         viewModel.init()
 
         binding.breeds.setOnClickListener {
@@ -45,8 +48,21 @@ class KittenListFragment : BaseFragment<FragmentKittenListBinding>() {
             viewModel.breeds.value?.map {
                 popupMenu.menu.add(0, 0, 0, it)
             }
+            popupMenu.menu.add(0, 0, 0, "all")
             popupMenu.menuInflater.inflate(R.menu.pop_up_menu, popupMenu.menu)
             popupMenu.setOnMenuItemClickListener { menuItem -> // Toast message on menu item clicked
+                viewModel.setStates(
+                    null,
+                    null,
+                    if (menuItem.title == "all") "" else menuItem.title as String,
+                    null
+                )
+                    .observe(viewLifecycleOwner) { data ->
+                        viewModel.search(data?.city, data?.breed, data?.name, data?.birthDate)
+                            .observe(viewLifecycleOwner) {
+                                kittenAdapter.setData(it)
+                            }
+                    }
                 true
             }
             popupMenu.show()
@@ -56,16 +72,20 @@ class KittenListFragment : BaseFragment<FragmentKittenListBinding>() {
         binding.searchAssets.setOnQueryTextListener(object :
             androidx.appcompat.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextChange(newText: String): Boolean {
-                if(newText == ""){
+                if (newText == "") {
                     this.onQueryTextSubmit("");
                 }
                 return false
             }
 
             override fun onQueryTextSubmit(query: String): Boolean {
-                viewModel.search(null, null, query, null).observe(viewLifecycleOwner) {
-                    kittenAdapter.setData(it)
-                }
+                viewModel.setStates(query, null, null, null)
+                    .observe(viewLifecycleOwner) {
+                        viewModel.search(it?.city, it?.breed, it?.name, it?.birthDate)
+                            .observe(viewLifecycleOwner) { data ->
+                                kittenAdapter.setData(data)
+                            }
+                    }
                 return false
             }
 
@@ -73,13 +93,21 @@ class KittenListFragment : BaseFragment<FragmentKittenListBinding>() {
     }
 
     fun subscribeUi() {
-        viewModel.search(null, null, null, null).observe(viewLifecycleOwner) {
-            kittenAdapter.setData(it)
+        with(viewModel) {
+            val params = states.value
+            search(params?.city, params?.breed, params?.name, params?.birthDate).observe(
+                viewLifecycleOwner
+            ) {
+                kittenAdapter.setData(it)
+            }
         }
         binding.kittenList.adapter = kittenAdapter
     }
 
     private fun navigateToKitten(id: Int) {
-       navigate(R.id.kittenListFragment, KittenListFragmentDirections.actionKittenListFragmentToKittenFragment(id))
+        navigate(
+            R.id.kittenListFragment,
+            KittenListFragmentDirections.actionKittenListFragmentToKittenFragment(id)
+        )
     }
 }

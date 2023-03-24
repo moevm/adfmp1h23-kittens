@@ -35,8 +35,11 @@ class AuthRepositoryImpl @Inject constructor(
     }
 
     override fun getKitten(filter: KittenFilterRequest): List<KittenItem>? {
-        val kittens = authApi.getKittens(filter).execute().body()
-        return kittens
+        return authApi.getKittens(filter).execute().body()
+    }
+
+    override fun getMineKittens(filter: KittenFilterRequest): List<KittenItem>? {
+        return authApi.getMineKittens(filter).execute().body()
     }
 
     override fun getBreed(): List<String>? {
