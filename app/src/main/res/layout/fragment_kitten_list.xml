@@ -27,10 +27,12 @@
         android:clipToPadding="false"
         android:paddingTop="10dp"
         android:scrollbars="none"
+        app:layout_constraintBottom_toTopOf="@+id/addKittenButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/breeds" />
+        app:layout_constraintTop_toBottomOf="@+id/breeds"
+        app:layout_constraintVertical_bias="0.016" />
 
     <Button
         android:id="@+id/breeds"
@@ -41,5 +43,16 @@
         android:text="Breeds"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/searchAssets" />
+
+    <Button
+        android:id="@+id/addKittenButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        android:text="ADD"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

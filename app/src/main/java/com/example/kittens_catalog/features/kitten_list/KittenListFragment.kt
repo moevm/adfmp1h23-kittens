@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import androidx.appcompat.widget.PopupMenu
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -42,6 +43,11 @@ class KittenListFragment : BaseFragment<FragmentKittenListBinding>() {
         binding.kittenList.adapter = kittenAdapter
         viewModel.setScreenType(args.type)
         viewModel.init()
+
+        if (args.type) {
+            binding.addKittenButton.isVisible = true
+            // тут короче код для переход на страничку добавления котика
+        }
 
         binding.breeds.setOnClickListener {
             val popupMenu = PopupMenu(requireContext(), binding.breeds)
