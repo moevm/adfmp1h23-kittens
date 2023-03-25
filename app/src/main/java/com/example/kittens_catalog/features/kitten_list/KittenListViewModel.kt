@@ -29,6 +29,10 @@ class KittenListViewModel @Inject constructor(private val authInteractor: AuthIn
         _breeds.value = authInteractor.getBreeds()
     }
 
+    init{
+        
+    }
+
     fun setScreenType(type: Boolean) {
         _screenType.value = type
     }
