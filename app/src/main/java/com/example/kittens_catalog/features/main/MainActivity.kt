@@ -3,6 +3,7 @@ package com.example.kittens_catalog.features.main
 import android.os.Bundle
 import android.os.StrictMode
 import android.view.View
+import android.widget.Toolbar
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -11,6 +12,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.AppBarConfiguration
 import com.example.kittens_catalog.R
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.regex.Pattern
