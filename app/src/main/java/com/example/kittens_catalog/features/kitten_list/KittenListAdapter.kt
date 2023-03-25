@@ -30,7 +30,7 @@ class KittenListAdapter:
             with(binding) {
                     itemText.text = item.name
                     val formatter = SimpleDateFormat("yyyy-MM-dd")
-                    shortAbout.text = "Breed: ${item.breed}, Birth Date: ${formatter.format(formatter.parse(item.birthDate))}"
+                    shortAbout.text = "Breed: ${item.breed}\nBirth Date: ${formatter.format(formatter.parse(item.birthDate))}"
                     Glide.with(root).load(item.picture).into(itemImage)
                     kittenItemBox.setOnClickListener {
                         clickListener.invoke(item)
