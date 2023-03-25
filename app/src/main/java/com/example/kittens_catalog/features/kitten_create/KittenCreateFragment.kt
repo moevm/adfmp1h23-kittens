@@ -1,8 +1,14 @@
 package com.example.kittens_catalog.features.kitten_create
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
+import androidx.core.view.MenuProvider
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.kittens_catalog.R
 import com.example.kittens_catalog.databinding.FragmentKittenCreateBinding
@@ -25,6 +31,7 @@ class KittenCreateFragment : BaseFragment<FragmentKittenCreateBinding>(R.layout.
     }
 
     private fun initView() {
+        initMenu()
         with(binding){
             kittenAge.setOnClickListener {
                 val myFormat = "yyyy-MM-dd"
@@ -62,6 +69,26 @@ class KittenCreateFragment : BaseFragment<FragmentKittenCreateBinding>(R.layout.
                 )
             }
         }
+    }
+
+    private fun initMenu(){
+        requireActivity().addMenuProvider(object : MenuProvider {
+            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+                menuInflater.inflate(R.menu.home_menu, menu)
+            }
+
+            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+                return when(menuItem.itemId){
+                    R.id.home_button->{
+                        findNavController().popBackStack(R.id.breeding_fragment,false)
+                        true
+                    }
+                    else -> {
+                        false
+                    }
+                }
+            }
+        }, viewLifecycleOwner, Lifecycle.State.RESUMED)
     }
 
 }

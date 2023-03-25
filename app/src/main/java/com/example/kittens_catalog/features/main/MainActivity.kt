@@ -5,17 +5,13 @@ import android.os.StrictMode
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
-import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.kittens_catalog.R
-import com.example.kittens_catalog.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.regex.Pattern
 
