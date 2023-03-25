@@ -33,6 +33,10 @@ class AuthFragment: BaseFragment<FragmentAuthBinding>(R.layout.fragment_auth) {
             signUp.setOnClickListener {
                 findNavController().navigate(R.id.registrationFragment)
             }
+
+            about.setOnClickListener {
+                findNavController().navigate(R.id.aboutItemFragment)
+            }
             loginField.setText("boris")
             passwordField.setText("borisBORIS123")
         }
