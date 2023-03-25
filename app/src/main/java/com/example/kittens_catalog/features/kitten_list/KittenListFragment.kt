@@ -50,18 +50,14 @@ class KittenListFragment : BaseFragment<FragmentKittenListBinding>(R.layout.frag
         binding.kittenList.adapter = kittenAdapter
         viewModel.setScreenType(args.type)
         viewModel.init()
-
         if (args.type) {
             binding.addKittenButton.isVisible = true
-            // тут короче код для переход на страничку добавления котика
             binding.addKittenButton.setOnClickListener {
                 navigate(R.id.kittenListFragment, KittenListFragmentDirections.actionKittenListFragmentToKittenCreateFragment())
             }
         }
-
-        binding.slider.valueFrom = 0f
-        binding.slider.valueTo = 25f
-
+//        binding.slider.valueFrom = 0f
+//        binding.slider.valueTo = 25f
         binding.yearPicker.setOnClickListener {
             binding.slider.visibility = if (binding.slider.isVisible) {
                 viewModel.clearBirthDate()
@@ -73,7 +69,6 @@ class KittenListFragment : BaseFragment<FragmentKittenListBinding>(R.layout.frag
             override fun onStartTrackingTouch(slider: RangeSlider) {
                 return
             }
-
             @SuppressLint("RestrictedApi")
             override fun onStopTrackingTouch(slider: RangeSlider) {
                 val lt = Calendar.getInstance().run {
@@ -95,8 +90,6 @@ class KittenListFragment : BaseFragment<FragmentKittenListBinding>(R.layout.frag
                     }
             }
         })
-
-
         binding.breeds.setOnClickListener {
             val popupMenu = PopupMenu(requireContext(), binding.breeds)
             viewModel.breeds.value?.map {
@@ -130,7 +123,6 @@ class KittenListFragment : BaseFragment<FragmentKittenListBinding>(R.layout.frag
                 }
                 return false
             }
-
             override fun onQueryTextSubmit(query: String): Boolean {
                 viewModel.setStates(query, null, null, null)
                     .observe(viewLifecycleOwner) {

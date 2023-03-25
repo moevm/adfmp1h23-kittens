@@ -14,6 +14,7 @@ fun KittenItem?.mapper(): KittenInfo?{
             name,
             price,
             picture?:"",
+            userId
         )
     }
 }

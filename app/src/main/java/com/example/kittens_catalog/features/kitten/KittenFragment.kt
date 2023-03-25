@@ -33,9 +33,12 @@ class KittenFragment : BaseFragment<FragmentKittenBinding>(R.layout.fragment_kit
 
     fun initView() {
         val id = args.id
-        viewModel.getKitten(id).observe(viewLifecycleOwner) {kittenInfo->
+        viewModel.getKitten(id).observe(viewLifecycleOwner) { kittenInfo->
+            val isEditable = viewModel.kitten.value?.userId == baseViewModel.personalData.value?.id;
+
             kittenInfo?.also{info ->
                 with(binding) {
+                    kittenBread.isEnabled = isEditable
                     kittenBread.setText(info.breed)
                     kittenBread.addTextChangedListener {
                         if (!buttonSave.isEnabled) {
@@ -43,24 +46,28 @@ class KittenFragment : BaseFragment<FragmentKittenBinding>(R.layout.fragment_kit
                         }
                     }
 //                    }
+                    kittenName.isEnabled = isEditable
                     kittenName.setText(info.name)
                     kittenName.addTextChangedListener {
                         if (!buttonSave.isEnabled) {
                             buttonSave.isEnabled = true
                         }
                     }
+                    kittenAbout.isEnabled = isEditable
                     kittenAbout.setText(info.about)
                     kittenAbout.addTextChangedListener {
                         if (!buttonSave.isEnabled) {
                             buttonSave.isEnabled = true
                         }
                     }
+                    kittenPrice.isEnabled = isEditable
                     kittenPrice.setText(info.price.toString())
                     kittenPrice.addTextChangedListener {
                         if (!buttonSave.isEnabled) {
                             buttonSave.isEnabled = true
                         }
                     }
+                    kittenAge.isEnabled = isEditable
                     kittenAge.text = info.birthDate.toDate() // TODO: форматирование даты
                     kittenAge.addTextChangedListener {
                         if (!buttonSave.isEnabled) {
