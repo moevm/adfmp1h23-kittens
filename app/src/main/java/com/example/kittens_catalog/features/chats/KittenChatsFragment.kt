@@ -8,7 +8,7 @@ import com.example.kittens_catalog.R
 import com.example.kittens_catalog.databinding.FragmentChatsBinding
 import com.example.kittens_catalog.features.base.BaseFragment
 
-class KittenChatsFragment:BaseFragment<FragmentChatsBinding>(R.layout.fragment_chats) {
+class KittenChatsFragment : BaseFragment<FragmentChatsBinding>(R.layout.fragment_chats) {
     override val binding: FragmentChatsBinding by viewBinding()
     private val chatAdapter = KittenChatsAdapter()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -17,9 +17,15 @@ class KittenChatsFragment:BaseFragment<FragmentChatsBinding>(R.layout.fragment_c
     }
 
     private fun initView() {
-        with(binding){
+        with(binding) {
             chats.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             chats.adapter = chatAdapter
+            chatAdapter.clickListener = {
+                navigate(
+                    R.id.kittenChatsFragment,
+                    KittenChatsFragmentDirections.actionKittenChatsFragmentToKittenChatFragment()
+                )
+            }
             chatAdapter.setData(
                 MockChat.list
             )

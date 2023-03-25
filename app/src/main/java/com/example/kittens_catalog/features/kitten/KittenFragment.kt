@@ -1,5 +1,6 @@
 package com.example.kittens_catalog.features.kitten
 
+import android.opengl.Visibility
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
@@ -45,6 +46,9 @@ class KittenFragment : BaseFragment<FragmentKittenBinding>(R.layout.fragment_kit
 
             kittenInfo?.also{info ->
                 with(binding) {
+                    buttonChat.visibility = if(isEditable) View.GONE else View.VISIBLE
+                    buttonSave.visibility = if(isEditable) View.VISIBLE else View.GONE
+
                     kittenBread.isEnabled = isEditable
                     kittenBread.setText(info.breed)
                     kittenBread.addTextChangedListener {
@@ -123,6 +127,9 @@ class KittenFragment : BaseFragment<FragmentKittenBinding>(R.layout.fragment_kit
                 )
                 buttonSave.isEnabled = false
             }
+        }
+        binding.buttonChat.setOnClickListener {
+            navigate(R.id.kittenFragment, KittenFragmentDirections.actionKittenFragmentToKittenChatFragment())
         }
     }
     private fun initMenu(){

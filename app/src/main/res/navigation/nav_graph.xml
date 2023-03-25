@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/auth_fragment"
         android:name="com.example.kittens_catalog.features.auth.AuthFragment"
-        android:label="auth_fragment"
+        android:label="Authorization"
         tools:layout="@layout/fragment_auth" >
         <action
             android:id="@+id/action_auth_fragment_to_breeding_fragment"
@@ -22,7 +22,7 @@
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.example.kittens_catalog.features.main.MainFragment"
-        android:label="MainFragment"
+        android:label="Main"
         tools:layout="@layout/activity_main"
         >
         <action
@@ -35,7 +35,7 @@
     <fragment
         android:id="@+id/breeding_fragment"
         android:name="com.example.kittens_catalog.features.breeding.BreedingFragment"
-        android:label="fragment_breeding"
+        android:label="Home"
         tools:layout="@layout/fragment_breeding" >
         <action
             android:id="@+id/action_breeding_fragment_to_kittenListFragment"
@@ -47,12 +47,12 @@
     <fragment
         android:id="@+id/registrationFragment"
         android:name="com.example.kittens_catalog.features.registration.RegistrationFragment"
-        android:label="fragment_registration"
+        android:label="Registration"
         tools:layout="@layout/fragment_registration" />
     <fragment
         android:id="@+id/kittenListFragment"
         android:name="com.example.kittens_catalog.features.kitten_list.KittenListFragment"
-        android:label="fragment_kitten_list"
+        android:label="List of kittens"
         tools:layout="@layout/fragment_kitten_list" >
         <argument
             android:name="type"
@@ -65,24 +65,24 @@
         <action
             android:id="@+id/action_kittenListFragment_to_kittenCreateFragment"
             app:destination="@id/kittenCreateFragment" />
-        <action
-            android:id="@+id/action_kittenListFragment_to_kittenChatFragment"
-            app:destination="@id/kittenChatFragment" />
     </fragment>
     <fragment
         android:id="@+id/kittenFragment"
         android:name="com.example.kittens_catalog.features.kitten.KittenFragment"
-        android:label="fragment_kitten"
+        android:label="Kitten"
         tools:layout="@layout/fragment_kitten">
         <argument
             android:defaultValue="-1"
             android:name="id"
             app:argType="integer"/>
+        <action
+            android:id="@+id/action_kittenFragment_to_kittenChatFragment"
+            app:destination="@id/kittenChatFragment" />
     </fragment>
     <fragment
         android:id="@+id/aboutItemFragment"
         android:name="com.example.kittens_catalog.features.about.AboutItemFragment"
-        android:label="fragment_about_item_list"
+        android:label="Authors"
         tools:layout="@layout/fragment_about_item_list" />
     <fragment
         android:id="@+id/kittenCreateFragment"
@@ -93,7 +93,11 @@
     <fragment
         android:id="@+id/kittenChatsFragment"
         android:name="com.example.kittens_catalog.features.chats.KittenChatsFragment"
-        android:label="Chats" />
+        android:label="Chats" >
+        <action
+            android:id="@+id/action_kittenChatsFragment_to_kittenChatFragment"
+            app:destination="@id/kittenChatFragment" />
+    </fragment>
     <fragment
         android:id="@+id/kittenChatFragment"
         android:name="com.example.kittens_catalog.features.chats.KittenChatFragment"

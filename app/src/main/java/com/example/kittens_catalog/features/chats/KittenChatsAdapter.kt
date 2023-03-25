@@ -3,11 +3,14 @@ package com.example.kittens_catalog.features.chats
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.kittens_catalog.data.network.models.KittenItem
 import com.example.kittens_catalog.databinding.KittenChatItemBinding
 
 class KittenChatsAdapter:
     RecyclerView.Adapter<KittenChatsAdapter.ChatHolder>() {
     private val state: MutableList<Message> = mutableListOf()
+    lateinit var clickListener: () -> Unit
+
 
     fun setData(kittenList: List<Message>) {
         state.clear()
@@ -22,6 +25,9 @@ class KittenChatsAdapter:
                     message.text = item.value
                     clear.setOnClickListener {
                         clearChat()
+                    }
+                    binding.kittenChatBox.setOnClickListener {
+                        clickListener.invoke()
                     }
                 }
             }
