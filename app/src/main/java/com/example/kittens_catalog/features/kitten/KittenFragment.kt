@@ -1,9 +1,15 @@
 package com.example.kittens_catalog.features.kitten
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
+import androidx.core.view.MenuProvider
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.bumptech.glide.Glide
@@ -32,6 +38,7 @@ class KittenFragment : BaseFragment<FragmentKittenBinding>(R.layout.fragment_kit
     }
 
     fun initView() {
+        initMenu()
         val id = args.id
         viewModel.getKitten(id).observe(viewLifecycleOwner) {kittenInfo->
             kittenInfo?.also{info ->
@@ -110,5 +117,24 @@ class KittenFragment : BaseFragment<FragmentKittenBinding>(R.layout.fragment_kit
                 buttonSave.isEnabled = false
             }
         }
+    }
+    private fun initMenu(){
+        requireActivity().addMenuProvider(object : MenuProvider {
+            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+                menuInflater.inflate(R.menu.home_menu, menu)
+            }
+
+            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+                return when(menuItem.itemId){
+                    R.id.home_button->{
+                        findNavController().popBackStack(R.id.breeding_fragment,false)
+                        true
+                    }
+                    else -> {
+                        false
+                    }
+                }
+            }
+        }, viewLifecycleOwner, Lifecycle.State.RESUMED)
     }
 }
