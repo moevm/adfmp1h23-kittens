@@ -20,9 +20,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity(
-    R.layout.activity_main
 ) {
-    private val _binding: ActivityMainBinding by viewBinding()
     private var navController: NavController? = null
     private val viewModel: MainViewModel by viewModels()
 
@@ -62,7 +60,7 @@ class MainActivity : AppCompatActivity(
         setContentView(R.layout.activity_main)
         val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
         StrictMode.setThreadPolicy(policy)
-        setSupportActionBar(_binding.tb)
+        setSupportActionBar(findViewById(R.id.tb))
         val navController = getRootNavController()
         prepareRootNavController(navController)
         onNavControllerActivated(navController)
@@ -80,16 +78,18 @@ class MainActivity : AppCompatActivity(
         return navHost.navController
     }
 
-    override fun onSupportNavigateUp(): Boolean {
-        super.onSupportNavigateUp()
-        navController = findNavController(R.id.nav_host_fragment)
-        if (viewModel.isAuthenticated.value == false) {
-            navigateToAuthFragment()
-        }
-        return navController?.navigateUp()?:false
-    }
+    override fun onSupportNavigateUp(): Boolean = (navController?.navigateUp() ?: false) || super.onSupportNavigateUp()
 
-    private fun navigateToAuthFragment() {
-        navController?.navigate(R.id.auth_fragment)
+    override fun onBackPressed() {
+        if (isStartDestination(navController?.currentDestination)) {
+            super.onBackPressed()
+        } else {
+            navController?.popBackStack()
+        }
+    }
+    override fun onDestroy() {
+        supportFragmentManager.unregisterFragmentLifecycleCallbacks(fragmentListener)
+        navController = null
+        super.onDestroy()
     }
 }

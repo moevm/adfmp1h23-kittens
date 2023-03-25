@@ -19,8 +19,23 @@ class KittenViewModel @Inject constructor(private val authInteractor: AuthIntera
         return _kitten
     }
 
-    fun changeKittenInfo(){
+    fun changeKittenInfo(
+        info: KittenInfo
+    ){
+        if(_kitten.value?.about != info.about ||
+            _kitten.value?.birthDate != info.birthDate ||
+            _kitten.value?.breed != info.breed ||
+            _kitten.value?.city != info.city ||
+            _kitten.value?.name != info.name ||
+            _kitten.value?.price != info.price
+        ){
 
+        }
     }
 }
 
+data class StateKittenWindow(
+    var kittenInfo: KittenInfo?,
+    var kittenInfoNew: KittenInfo?,
+    var changeData: Boolean = false,
+)

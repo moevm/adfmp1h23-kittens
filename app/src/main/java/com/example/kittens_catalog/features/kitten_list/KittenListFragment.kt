@@ -2,10 +2,16 @@ package com.example.kittens_catalog.features.kitten_list
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.widget.PopupMenu
+import androidx.core.view.MenuProvider
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -34,6 +40,7 @@ class KittenListFragment : BaseFragment<FragmentKittenListBinding>(R.layout.frag
         baseViewModel.doRefresh()
         initView()
         subscribeUi()
+        initMenu()
     }
 
     fun initView() {
@@ -146,6 +153,25 @@ class KittenListFragment : BaseFragment<FragmentKittenListBinding>(R.layout.frag
         binding.kittenList.adapter = kittenAdapter
     }
 
+    private fun initMenu(){
+        requireActivity().addMenuProvider(object : MenuProvider {
+            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+                menuInflater.inflate(R.menu.home_menu, menu)
+            }
+
+            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+                return when(menuItem.itemId){
+                    R.id.home_button->{
+                        findNavController().popBackStack(R.id.breeding_fragment,false)
+                        true
+                    }
+                    else -> {
+                        false
+                    }
+                }
+            }
+        }, viewLifecycleOwner, Lifecycle.State.RESUMED)
+    }
     private fun navigateToKitten(id: Int) {
         navigate(
             R.id.kittenListFragment,

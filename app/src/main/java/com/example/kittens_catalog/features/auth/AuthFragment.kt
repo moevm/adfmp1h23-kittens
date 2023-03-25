@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.kittens_catalog.R
 import com.example.kittens_catalog.databinding.FragmentAuthBinding
@@ -26,11 +27,11 @@ class AuthFragment: BaseFragment<FragmentAuthBinding>(R.layout.fragment_auth) {
                 val auth = viewModel.auth(binding.loginField.text.toString(), binding.passwordField.text.toString())
                 baseViewModel.doRefresh()
                 if (auth) {
-                    navController.navigate(R.id.mainFragment)
+                    findNavController().navigate(R.id.mainFragment)
                 }
             }
             signUp.setOnClickListener {
-                navController.navigate(R.id.registrationFragment)
+                findNavController().navigate(R.id.registrationFragment)
             }
             loginField.setText("boris")
             passwordField.setText("borisBORIS123")

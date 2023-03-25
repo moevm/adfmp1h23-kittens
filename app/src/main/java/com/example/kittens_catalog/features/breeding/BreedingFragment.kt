@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.bumptech.glide.Glide
 import com.example.kittens_catalog.R
@@ -30,7 +31,7 @@ class BreedingFragment : BaseFragment<FragmentBreedingBinding>(R.layout.fragment
             viewModel.logOut()
             baseViewModel.logOut().observe(viewLifecycleOwner) {
                 if (!it) {
-                    navController.navigate(R.id.mainFragment)
+                    findNavController().navigate(R.id.mainFragment)
                 } else {
                     navigate(R.id.breeding_fragment, MainFragmentDirections.actionMainFragmentToBreedingFragment())
                 }

@@ -27,7 +27,7 @@ class MainFragment: BaseFragment<FragmentMainBinding>(
     R.layout.fragment_main
 ) {
     private val viewModel: MainViewModel by viewModels()
-    override val binding: FragmentMainBinding by viewBinding()
+    override val binding: FragmentMainBinding by viewBinding(FragmentMainBinding::bind)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
