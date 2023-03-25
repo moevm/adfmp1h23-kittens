@@ -52,6 +52,9 @@ class BreedingFragment : BaseFragment<FragmentBreedingBinding>(R.layout.fragment
         binding.myCatsButton.setOnClickListener {
             navigate(R.id.breeding_fragment, BreedingFragmentDirections.actionBreedingFragmentToKittenListFragment(true))
         }
+        binding.kittensChat.setOnClickListener{
+            navigate(R.id.breeding_fragment, BreedingFragmentDirections.actionBreedingFragmentToKittenChatsFragment())
+        }
     }
 
 }

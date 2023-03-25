@@ -40,6 +40,9 @@
         <action
             android:id="@+id/action_breeding_fragment_to_kittenListFragment"
             app:destination="@id/kittenListFragment" />
+        <action
+            android:id="@+id/action_breeding_fragment_to_kittenChatsFragment"
+            app:destination="@id/kittenChatsFragment" />
     </fragment>
     <fragment
         android:id="@+id/registrationFragment"
@@ -62,6 +65,9 @@
         <action
             android:id="@+id/action_kittenListFragment_to_kittenCreateFragment"
             app:destination="@id/kittenCreateFragment" />
+        <action
+            android:id="@+id/action_kittenListFragment_to_kittenChatFragment"
+            app:destination="@id/kittenChatFragment" />
     </fragment>
     <fragment
         android:id="@+id/kittenFragment"
@@ -84,4 +90,12 @@
         android:label="My kittens"
         tools:layout="@layout/fragment_kitten_create"
         />
+    <fragment
+        android:id="@+id/kittenChatsFragment"
+        android:name="com.example.kittens_catalog.features.chats.KittenChatsFragment"
+        android:label="Chats" />
+    <fragment
+        android:id="@+id/kittenChatFragment"
+        android:name="com.example.kittens_catalog.features.chats.KittenChatFragment"
+        android:label="KittenChatFragment" />
 </navigation>

@@ -89,6 +89,6 @@ class KittenCreateFragment : BaseFragment<FragmentKittenCreateBinding>(R.layout.
                 }
             }
         }, viewLifecycleOwner, Lifecycle.State.RESUMED)
-    }
 
+    }
 }
