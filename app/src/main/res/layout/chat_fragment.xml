@@ -53,13 +53,13 @@
 
         <Button
             android:id="@+id/btnSend"
-            android:text="SEND"
-            android:textSize="14dp"
-            android:clickable="true"
-            android:layout_width="64dp"
+            android:layout_width="78dp"
             android:layout_height="48dp"
+            android:layout_gravity="bottom"
+            android:clickable="true"
             android:gravity="center"
-            android:layout_gravity="bottom" />
+            android:text="SEND"
+            android:textSize="14dp" />
 
     </LinearLayout>
 

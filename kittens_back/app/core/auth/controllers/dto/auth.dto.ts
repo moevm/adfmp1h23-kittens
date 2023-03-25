@@ -8,6 +8,5 @@ export class AuthDto {
 
 	@ApiProperty()
 	@IsString()
-	@MinLength(8)
 	password: string;
 }

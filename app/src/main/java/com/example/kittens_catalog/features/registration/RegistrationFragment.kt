@@ -33,6 +33,12 @@ class RegistrationFragment :
                 if (
                     loginField.text.isNullOrEmpty() || lastNameField.text.isNullOrEmpty() || firstNameField.text.isNullOrEmpty() || passwordField.text.isNullOrEmpty()
                 ) {
+                    Toast.makeText(
+                        requireContext(),
+                        "You need to fill all required fields!",
+                        Toast.LENGTH_LONG
+                    ).show()
+                } else {
                     val login = loginField.text.toString()
                     val lastName = lastNameField.text.toString()
                     val firstName = firstNameField.text.toString()
@@ -51,13 +57,6 @@ class RegistrationFragment :
                             Toast.LENGTH_LONG
                         ).show()
                     }
-
-                } else {
-                    Toast.makeText(
-                        requireContext(),
-                        "You need to fill all required fields!",
-                        Toast.LENGTH_LONG
-                    ).show()
                 }
             }
         }
