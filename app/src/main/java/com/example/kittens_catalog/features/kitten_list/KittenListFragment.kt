@@ -38,7 +38,6 @@ class KittenListFragment : BaseFragment<FragmentKittenListBinding>(R.layout.frag
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        baseViewModel.doRefresh()
         initView()
         subscribeUi()
         initMenu()

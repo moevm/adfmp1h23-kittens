@@ -22,21 +22,43 @@ import com.example.kittens_catalog.features.main.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class RegistrationFragment : BaseFragment<FragmentRegistrationBinding>(R.layout.fragment_registration) {
+class RegistrationFragment :
+    BaseFragment<FragmentRegistrationBinding>(R.layout.fragment_registration) {
     private val viewModel: RegistrationViewModel by viewModels()
     override val binding: FragmentRegistrationBinding by viewBinding()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.registrationButton.setOnClickListener {
-            val login = binding.loginField.text.toString()
-            val lastName = binding.lastNameField.text.toString()
-            val firstName = binding.firstNameField.text.toString()
-            val password = binding.passwordField.text.toString()
-            val res = viewModel.register(login, lastName, firstName, password)
-            if (res) {
-                Toast.makeText(requireContext(), "You are successfully registered", Toast.LENGTH_LONG).show()
-            } else {
-                Toast.makeText(requireContext(), "Some error occurred while registration", Toast.LENGTH_LONG).show()
+            with(binding) {
+                if (
+                    loginField.text.isNullOrEmpty() || lastNameField.text.isNullOrEmpty() || firstNameField.text.isNullOrEmpty() || passwordField.text.isNullOrEmpty()
+                ) {
+                    val login = loginField.text.toString()
+                    val lastName = lastNameField.text.toString()
+                    val firstName = firstNameField.text.toString()
+                    val password = passwordField.text.toString()
+                    val res = viewModel.register(login, lastName, firstName, password)
+                    if (res) {
+                        Toast.makeText(
+                            requireContext(),
+                            "You are successfully registered",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    } else {
+                        Toast.makeText(
+                            requireContext(),
+                            "Some error occurred while registration",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+
+                } else {
+                    Toast.makeText(
+                        requireContext(),
+                        "You need to fill all required fields!",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
             }
         }
     }
