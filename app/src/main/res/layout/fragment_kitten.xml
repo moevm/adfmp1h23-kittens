@@ -76,11 +76,11 @@
                     android:id="@+id/kitten_age"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop = "8dp"
-                    android:textColor="@color/yellow"
-                    android:inputType="textPersonName"
+                    android:layout_marginTop="8dp"
                     android:background="@android:color/transparent"
-                    android:hint="Age" />
+                    android:hint="Age"
+                    android:inputType="date"
+                    android:textColor="@color/yellow" />
 
                 <EditText
                     android:id="@+id/kitten_price"
