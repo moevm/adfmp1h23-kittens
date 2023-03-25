@@ -11,7 +11,11 @@ import com.example.kittens_catalog.R
 import com.example.kittens_catalog.databinding.FragmentKittenBinding
 import com.example.kittens_catalog.extensions.toDate
 import com.example.kittens_catalog.features.base.BaseFragment
+import com.google.android.material.datepicker.CalendarConstraints
+import com.google.android.material.datepicker.MaterialDatePicker
 import dagger.hilt.android.AndroidEntryPoint
+import java.text.SimpleDateFormat
+import java.util.*
 
 @AndroidEntryPoint
 class KittenFragment : BaseFragment<FragmentKittenBinding>(R.layout.fragment_kitten) {
@@ -30,16 +34,42 @@ class KittenFragment : BaseFragment<FragmentKittenBinding>(R.layout.fragment_kit
     fun initView() {
         val id = args.id
         viewModel.getKitten(id).observe(viewLifecycleOwner) {kittenInfo->
-            kittenInfo?.also{
+            kittenInfo?.also{info ->
                 with(binding) {
-                    kittenBread.setText(it.breed)
+                    kittenBread.setText(info.breed)
                     kittenBread.addTextChangedListener {
                     }
-                    kittenName.setText(it.name)
-                    kittenAbout.setText(it.about)
-                    kittenPrice.setText(it.price.toString())
-                    kittenAge.setText(it.birthDate.toDate()) // TODO: форматирование даты
-                    Glide.with(root).load(it.picture).into(kittenImage);
+                    kittenName.setText(info.name)
+                    kittenAbout.setText(info.about)
+                    kittenPrice.setText(info.price.toString())
+                    kittenAge.text = info.birthDate.toDate() // TODO: форматирование даты
+                    kittenAge.setOnClickListener {
+                        val myFormat = "yyyy-MM-dd"
+
+                        val sdf = SimpleDateFormat(myFormat)
+                        val date = sdf.parse(info.birthDate)
+                        val timeInMillis = date.time
+
+                        val constraintBuilder = CalendarConstraints.Builder().setOpenAt(
+                            timeInMillis //pass time in milli seconds
+                        ).build()
+
+                        val picker = MaterialDatePicker.Builder.datePicker()
+                            .setTitleText("Select Date")
+                            .setCalendarConstraints(constraintBuilder)
+                            .build()
+
+                        picker.addOnPositiveButtonClickListener {
+                            val date = Date(it)
+                            val formattedDate = sdf.format(date)
+                            kittenAge.text = formattedDate
+                        }
+                        picker.show(
+                            requireActivity().supportFragmentManager,
+                            "materialDatePicker"
+                        )
+                    }
+                    Glide.with(root).load(info.picture).into(kittenImage)
                 }
             }
         }
