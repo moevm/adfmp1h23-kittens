@@ -38,11 +38,35 @@ class KittenFragment : BaseFragment<FragmentKittenBinding>(R.layout.fragment_kit
                 with(binding) {
                     kittenBread.setText(info.breed)
                     kittenBread.addTextChangedListener {
+                        if (!buttonSave.isEnabled) {
+                            buttonSave.isEnabled = true
+                        }
                     }
+//                    }
                     kittenName.setText(info.name)
+                    kittenName.addTextChangedListener {
+                        if (!buttonSave.isEnabled) {
+                            buttonSave.isEnabled = true
+                        }
+                    }
                     kittenAbout.setText(info.about)
+                    kittenAbout.addTextChangedListener {
+                        if (!buttonSave.isEnabled) {
+                            buttonSave.isEnabled = true
+                        }
+                    }
                     kittenPrice.setText(info.price.toString())
+                    kittenPrice.addTextChangedListener {
+                        if (!buttonSave.isEnabled) {
+                            buttonSave.isEnabled = true
+                        }
+                    }
                     kittenAge.text = info.birthDate.toDate() // TODO: форматирование даты
+                    kittenAge.addTextChangedListener {
+                        if (!buttonSave.isEnabled) {
+                            buttonSave.isEnabled = true
+                        }
+                    }
                     kittenAge.setOnClickListener {
                         val myFormat = "yyyy-MM-dd"
 
@@ -73,6 +97,18 @@ class KittenFragment : BaseFragment<FragmentKittenBinding>(R.layout.fragment_kit
                 }
             }
         }
+        binding.buttonSave.setOnClickListener {
+            with(binding) {
+                viewModel.changeKittenInfo(
+                    breed = kittenBread.text.toString(),
+                    about = kittenAbout.text.toString(),
+                    price = kittenPrice.text.toString().toInt(),
+                    name = kittenName.text.toString(),
+                    city = kittenName.text.toString(),
+                    birthDate = kittenAge.text.toString(),
+                )
+                buttonSave.isEnabled = false
+            }
+        }
     }
 }
-

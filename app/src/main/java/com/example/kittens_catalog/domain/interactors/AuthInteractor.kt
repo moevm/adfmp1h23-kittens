@@ -33,4 +33,12 @@ class AuthInteractor @Inject constructor(private val authRepository: AuthReposit
     fun getOne(id: Int): KittenInfo? {
         return authRepository.getOne(id)
     }
+
+    fun createKitten(data: CreateKittenRequest): KittenInfo? {
+        return authRepository.createKitten(data)
+    }
+
+    fun updateKitten(data: UpdateKittenRequest): KittenInfo? {
+        return authRepository.updateKitten(data)
+    }
 }

@@ -1,4 +1,5 @@
 package com.example.kittens_catalog.data.repository
+
 import android.content.SharedPreferences
 import com.example.kittens_catalog.data.mappers.mapper
 import com.example.kittens_catalog.data.network.api.AuthApi
@@ -31,7 +32,12 @@ class AuthRepositoryImpl @Inject constructor(
         firstName: String,
         password: String
     ): Boolean {
-        val params = RegisterRequest(login = login, lastName = lastName, firstName = firstName, password = password)
+        val params = RegisterRequest(
+            login = login,
+            lastName = lastName,
+            firstName = firstName,
+            password = password
+        )
         val res = authApi.register(params).execute()
         return res.body()?.success ?: false
     }
@@ -50,5 +56,13 @@ class AuthRepositoryImpl @Inject constructor(
 
     override fun getOne(id: Int): KittenInfo? {
         return authApi.getOne(id).execute().body().mapper()
+    }
+
+    override fun createKitten(kittenData: CreateKittenRequest): KittenInfo? {
+        return authApi.createKitten(kittenData).execute().body().mapper()
+    }
+
+    override fun updateKitten(kittenData: UpdateKittenRequest): KittenInfo? {
+        return authApi.updateKitten(kittenData).execute().body().mapper()
     }
 }

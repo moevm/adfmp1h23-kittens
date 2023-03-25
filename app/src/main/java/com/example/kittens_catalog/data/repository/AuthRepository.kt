@@ -1,8 +1,6 @@
 package com.example.kittens_catalog.data.repository
 
-import com.example.kittens_catalog.data.network.models.KittenFilterRequest
-import com.example.kittens_catalog.data.network.models.KittenItem
-import com.example.kittens_catalog.data.network.models.WhoAmIResponse
+import com.example.kittens_catalog.data.network.models.*
 import com.example.kittens_catalog.domain.entity.KittenInfo
 
 interface AuthRepository {
@@ -13,4 +11,6 @@ interface AuthRepository {
     fun getMineKittens(filter: KittenFilterRequest): List<KittenItem>?
     fun getBreed(): List<String>?
     fun getOne(id: Int): KittenInfo?
+    fun createKitten(kittenData: CreateKittenRequest): KittenInfo?
+    fun updateKitten(kittenData: UpdateKittenRequest): KittenInfo?
 }
