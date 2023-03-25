@@ -40,9 +40,6 @@ class MainFragment: BaseFragment<FragmentMainBinding>(
 
     }
 
-    private fun initView() {
-    }
-
     private fun subscribeUi() {
         viewModel.whoAmI().observe(viewLifecycleOwner) {
             if (!it) {
@@ -51,7 +48,6 @@ class MainFragment: BaseFragment<FragmentMainBinding>(
                 navigate(R.id.mainFragment, MainFragmentDirections.actionMainFragmentToBreedingFragment())
             }
         }
-        Toast.makeText(requireContext(), "auth: ${viewModel.isAuthenticated.value} data: ${viewModel.personalData.value?.lastName}", Toast.LENGTH_LONG).show()
     }
 
 }

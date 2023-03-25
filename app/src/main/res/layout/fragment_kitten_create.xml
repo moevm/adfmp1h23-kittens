@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -24,7 +23,7 @@
         android:textColor="@color/yellow"
         android:paddingHorizontal="16dp"
         android:inputType="textPersonName"
-        android:hint="Name" />
+        android:hint="* Name" />
 
     <EditText
         android:id="@+id/kitten_city"
@@ -34,7 +33,7 @@
         android:paddingHorizontal="16dp"
         android:textColor="@color/yellow"
         android:inputType="textPersonName"
-        android:hint="City" />
+        android:hint="* City" />
 
     <EditText
         android:id="@+id/kitten_bread"
@@ -44,7 +43,7 @@
         android:paddingHorizontal="16dp"
         android:textColor="@color/yellow"
         android:inputType="textPersonName"
-        android:hint="Bread" />
+        android:hint="* Bread" />
 
     <TextView
         android:id="@+id/kitten_age"
@@ -52,7 +51,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:paddingHorizontal="16dp"
-        android:hint="Age"
+        android:hint="* Age"
         android:textColor="@color/yellow" />
 
     <EditText
@@ -76,12 +75,30 @@
     <EditText
         android:id="@+id/kitten_about"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="119dp"
+        android:layout_marginTop="8dp"
+        android:hint="Info kitten"
+        android:inputType="textMultiLine"
         android:paddingHorizontal="16dp"
-        android:layout_marginTop = "8dp"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/pictureText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop = "32dp"
+        android:paddingHorizontal="16dp"
+        android:text="* Picture:" />
+
+    <EditText
+        android:id="@+id/kitten_picture"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:hint="Link to picture"
         android:inputType="textPersonName"
-        android:textColor="@color/black"
-        android:hint="Info kitten" />
+        android:paddingHorizontal="16dp"
+        android:textColor="@color/black" />
 
     <LinearLayout
         android:layout_width="match_parent"
