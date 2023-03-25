@@ -15,6 +15,9 @@
         <action
             android:id="@+id/action_auth_fragment_to_registrationFragment"
             app:destination="@id/registrationFragment" />
+        <action
+            android:id="@+id/action_auth_fragment_to_aboutItemFragment"
+            app:destination="@id/aboutItemFragment" />
     </fragment>
     <fragment
         android:id="@+id/mainFragment"
@@ -67,4 +70,9 @@
             android:name="id"
             app:argType="integer"/>
     </fragment>
+    <fragment
+        android:id="@+id/aboutItemFragment"
+        android:name="com.example.kittens_catalog.features.about.AboutItemFragment"
+        android:label="fragment_about_item_list"
+        tools:layout="@layout/fragment_about_item_list" />
 </navigation>
