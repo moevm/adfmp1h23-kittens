@@ -27,4 +27,10 @@ interface AuthApi {
 
     @GET("/kitten/get-one")
     fun getOne(@Query("id") id: Int): Call<KittenItem?>
+
+    @POST("/kitten/create")
+    fun createKitten(@Body kittenData: CreateKittenRequest): Call<KittenItem?>
+
+    @POST("/kitten/update")
+    fun updateKitten(@Body kittenData: UpdateKittenRequest): Call<KittenItem?>
 }

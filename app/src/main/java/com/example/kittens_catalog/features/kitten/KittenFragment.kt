@@ -9,6 +9,7 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.bumptech.glide.Glide
 import com.example.kittens_catalog.R
 import com.example.kittens_catalog.databinding.FragmentKittenBinding
+import com.example.kittens_catalog.domain.entity.KittenInfo
 import com.example.kittens_catalog.features.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -40,6 +41,18 @@ class KittenFragment : BaseFragment<FragmentKittenBinding>(R.layout.fragment_kit
                     kittenAge.setText(it.birthDate) // TODO: форматирование даты
                     Glide.with(root).load(it.picture).into(kittenImage);
                 }
+            }
+        }
+        binding.buttonSave.setOnClickListener {
+            with(binding) {
+                viewModel.changeKittenInfo(
+                    breed = kittenBread.text.toString(),
+                    about = kittenAbout.text.toString(),
+                    price = kittenPrice.text.toString().toInt(),
+                    name = kittenName.text.toString(),
+                    city = kittenName.text.toString(),
+                    birthDate = null
+                )
             }
         }
     }
