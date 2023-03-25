@@ -17,6 +17,7 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.kittens_catalog.R
 import com.example.kittens_catalog.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.regex.Pattern
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity(
@@ -46,6 +47,7 @@ class MainActivity : AppCompatActivity(
     }
 
     private val destinationListener = NavController.OnDestinationChangedListener { _, destination, arguments ->
+        supportActionBar?.title = prepareTitle(destination.label, arguments)
         supportActionBar?.setDisplayHomeAsUpEnabled(!isStartDestination(destination))
     }
 
@@ -77,6 +79,27 @@ class MainActivity : AppCompatActivity(
         val navHost = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         return navHost.navController
     }
+
+    private fun prepareTitle(label: CharSequence?, arguments: Bundle?): String {
+        if (label == null) return ""
+        val title = StringBuffer()
+        val fillInPattern = Pattern.compile("\\{(.+?)\\}")
+        val matcher = fillInPattern.matcher(label)
+        while (matcher.find()) {
+            val argName = matcher.group(1)
+            if (arguments != null && arguments.containsKey(argName)) {
+                matcher.appendReplacement(title, "")
+                title.append(arguments[argName].toString())
+            } else {
+                throw IllegalArgumentException(
+                    "Could not find $argName in $arguments to fill label $label"
+                )
+            }
+        }
+        matcher.appendTail(title)
+        return title.toString()
+    }
+
 
     override fun onSupportNavigateUp(): Boolean = (navController?.navigateUp() ?: false) || super.onSupportNavigateUp()
 
