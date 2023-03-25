@@ -33,22 +33,18 @@ class KittenCreateFragment : BaseFragment<FragmentKittenCreateBinding>(R.layout.
     private fun initView() {
         initMenu()
         with(binding){
-
             kittenAge.setOnClickListener {
                 val myFormat = "yyyy-MM-dd"
                 val sdf = SimpleDateFormat(myFormat)
                 val date = sdf.parse("2023-05-10")
                 val timeInMillis = date.time
-
                 val constraintBuilder = CalendarConstraints.Builder().setOpenAt(
                     timeInMillis //pass time in milli seconds
                 ).build()
-
                 val picker = MaterialDatePicker.Builder.datePicker()
                     .setTitleText("Select date")
                     .setCalendarConstraints(constraintBuilder)
                     .build()
-
                 picker.addOnPositiveButtonClickListener {
                     val date = Date(it)
                     val formattedDate = sdf.format(date)
@@ -57,6 +53,19 @@ class KittenCreateFragment : BaseFragment<FragmentKittenCreateBinding>(R.layout.
                 picker.show(
                     requireActivity().supportFragmentManager,
                     "materialDatePicker"
+                )
+            }
+        }
+        binding.save.setOnClickListener {
+            with(binding) {
+                viewModel.createKitten(
+                    about = kittenAbout.text.toString(),
+                    birthDate = kittenAge.text.toString(),
+                    breed = kittenBread.text.toString(),
+                    city = kittenCity.text.toString(),
+                    name = kittenName.text.toString(),
+                    price = kittenPrice.text.toString().toInt(),
+                    picture = null
                 )
             }
         }

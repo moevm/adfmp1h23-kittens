@@ -10,4 +10,5 @@ data class KittenInfo(
     val name: String,
     val price: Int,
     val picture: String,
+    val userId: Int
 )
