@@ -78,6 +78,13 @@ class KittenFragment : BaseFragment<FragmentKittenBinding>(R.layout.fragment_kit
                             buttonSave.isEnabled = true
                         }
                     }
+                    kittenCity.isEnabled = isEditable
+                    kittenCity.setText(info.city)
+                    kittenCity.addTextChangedListener {
+                        if (!buttonSave.isEnabled) {
+                            buttonSave.isEnabled = true
+                        }
+                    }
                     kittenAge.isEnabled = isEditable
                     kittenAge.text = info.birthDate.toDate() // TODO: форматирование даты
                     kittenAge.addTextChangedListener {
