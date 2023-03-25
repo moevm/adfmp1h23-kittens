@@ -1,0 +1,66 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+model Auth {
+  id           Int     @id @default(autoincrement())
+  userId       String  @unique
+  user         User?
+  verified     Boolean @default(false)
+  email        String? @unique
+  passwordHash String?
+  accountId    String? @unique
+  refreshToken String? @unique
+  accessToken  String? @unique
+
+  @@map("auths")
+}
+
+model User {
+  id         Int       @id @default(autoincrement())
+  login      String    @unique
+  picture    String?
+  firstName  String
+  middleName String?
+  lastName   String
+  about      String?
+  birthDate  DateTime?
+
+  created DateTime @default(now())
+  updated DateTime @updatedAt
+
+  suspended Boolean @default(false)
+  auth      Auth?   @relation(fields: [authId], references: [id])
+  authId    Int?    @unique
+
+  kittens Kitten[]
+
+  @@map("users")
+}
+
+model Kitten {
+  id        Int      @id @default(autoincrement())
+  name      String
+  picture   String?
+  about     String
+  birthDate DateTime
+  breed     String
+  city      String
+  price     Int
+  created   DateTime @default(now())
+  updated   DateTime @updatedAt
+  hidden    Boolean  @default(false)
+  user      User     @relation(fields: [userId], references: [id])
+  userId    Int
+
+  @@map("kittnes")
+}

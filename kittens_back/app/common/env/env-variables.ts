@@ -1,0 +1,5 @@
+export enum EnvVariables {
+	BACKEND_DATABASE_URL = 'BACKEND_DATABASE_URL',
+	PORT = 'PORT',
+	PASSWORD_SALT = 'PASSWORD_SALT',
+}

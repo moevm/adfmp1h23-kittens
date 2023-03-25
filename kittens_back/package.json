@@ -1,0 +1,45 @@
+{
+  "name": "kittens-back",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "replace-paths": "tsconfig-replace-paths --project tsconfig.build.json -s . -o ./dist",
+    "build": "tsc --build ./tsconfig.build.json && npm run replace-paths",
+    "build:clean": "rm -rf ./dist && npm run build",
+    "db:local-start": "docker run -d --name kittens-db -p 5432:5432 -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=password -d postgres",
+    "db:setup": "pnpm run db:migrate && pnpm run db:codegen",
+    "db:migrate": "prisma db push",
+    "db:codegen": "prisma generate",
+    "start": "npm run build:clean && node ./dist/main.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@nestjs/common": "^9.3.10",
+    "@nestjs/config": "^2.3.1",
+    "@nestjs/core": "^9.3.10",
+    "@nestjs/passport": "^9.0.3",
+    "@nestjs/platform-express": "^9.3.10",
+    "@nestjs/swagger": "^6.2.1",
+    "@prisma/client": "4.11.0",
+    "@types/node": "^18.15.3",
+    "@types/passport-local": "^1.0.35",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.0",
+    "cookie-parser": "^1.4.6",
+    "paseto": "^3.1.2",
+    "passport": "^0.6.0",
+    "passport-local": "^1.0.0",
+    "prettier": "^2.8.4",
+    "reflect-metadata": "^0.1.12",
+    "rxjs": "^7.1.0",
+    "typescript": "^5.0.2"
+  },
+  "devDependencies": {
+    "@types/cookie-parser": "^1.4.3",
+    "prisma": "4.11.0",
+    "tsconfig-replace-paths": "^0.0.14"
+  }
+}
