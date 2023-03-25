@@ -2,6 +2,7 @@ package com.example.kittens_catalog.domain.interactors
 
 import com.example.kittens_catalog.data.network.models.*
 import com.example.kittens_catalog.data.repository.AuthRepository
+import com.example.kittens_catalog.domain.entity.KittenInfo
 import javax.inject.Inject
 
 class AuthInteractor @Inject constructor(private val authRepository: AuthRepository) {
@@ -29,7 +30,7 @@ class AuthInteractor @Inject constructor(private val authRepository: AuthReposit
         return authRepository.getBreed()
     }
 
-    fun getOne(id: Int): KittenItem? {
+    fun getOne(id: Int): KittenInfo? {
         return authRepository.getOne(id)
     }
 }

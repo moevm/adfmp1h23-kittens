@@ -2,40 +2,32 @@ package com.example.kittens_catalog.features.kitten_list
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
 import androidx.appcompat.widget.PopupMenu
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.kittens_catalog.R
 import com.example.kittens_catalog.data.network.models.BirthDate
 import com.example.kittens_catalog.databinding.FragmentKittenListBinding
 import com.example.kittens_catalog.features.base.BaseFragment
-import com.example.kittens_catalog.features.kitten.KittenFragmentArgs
 import com.google.android.material.slider.RangeSlider
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
-import java.util.Calendar
-import java.util.Date
+import java.util.*
 
 
 @AndroidEntryPoint
-class KittenListFragment : BaseFragment<FragmentKittenListBinding>() {
-
+class KittenListFragment : BaseFragment<FragmentKittenListBinding>(R.layout.fragment_kitten_list) {
+    override val binding: FragmentKittenListBinding by viewBinding()
     private val kittenAdapter by lazy {
         KittenListAdapter()
     }
 
     private val viewModel: KittenListViewModel by viewModels()
     private val args: KittenListFragmentArgs by navArgs()
-
-
-    override fun setupViewBinding(inflater: LayoutInflater): FragmentKittenListBinding {
-        return FragmentKittenListBinding.inflate(inflater)
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

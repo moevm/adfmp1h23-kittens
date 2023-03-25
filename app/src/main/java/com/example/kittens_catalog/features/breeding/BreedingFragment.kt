@@ -6,8 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.bumptech.glide.Glide
 import com.example.kittens_catalog.R
+import com.example.kittens_catalog.databinding.FragmentAuthBinding
 import com.example.kittens_catalog.databinding.FragmentBreedingBinding
 import com.example.kittens_catalog.features.base.BaseFragment
 import com.example.kittens_catalog.features.main.MainFragmentDirections
@@ -16,10 +18,10 @@ import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
-class BreedingFragment : BaseFragment<FragmentBreedingBinding>() {
+class BreedingFragment : BaseFragment<FragmentBreedingBinding>(R.layout.fragment_breeding) {
 
     private val viewModel: BreedingViewModel by viewModels()
-
+    override val binding: FragmentBreedingBinding by viewBinding()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         baseViewModel.doRefresh()
@@ -51,7 +53,4 @@ class BreedingFragment : BaseFragment<FragmentBreedingBinding>() {
         }
     }
 
-    override fun setupViewBinding(inflater: LayoutInflater): FragmentBreedingBinding {
-        return FragmentBreedingBinding.inflate(inflater)
-    }
 }

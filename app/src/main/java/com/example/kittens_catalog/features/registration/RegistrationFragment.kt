@@ -10,8 +10,10 @@ import android.widget.Toast
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.kittens_catalog.R
 import com.example.kittens_catalog.databinding.FragmentBreedingBinding
+import com.example.kittens_catalog.databinding.FragmentMainBinding
 import com.example.kittens_catalog.databinding.FragmentRegistrationBinding
 import com.example.kittens_catalog.features.base.BaseFragment
 import com.example.kittens_catalog.features.breeding.BreedingViewModel
@@ -20,8 +22,9 @@ import com.example.kittens_catalog.features.main.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class RegistrationFragment : BaseFragment<FragmentRegistrationBinding>() {
+class RegistrationFragment : BaseFragment<FragmentRegistrationBinding>(R.layout.fragment_registration) {
     private val viewModel: RegistrationViewModel by viewModels()
+    override val binding: FragmentRegistrationBinding by viewBinding()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.registrationButton.setOnClickListener {
@@ -37,9 +40,4 @@ class RegistrationFragment : BaseFragment<FragmentRegistrationBinding>() {
             }
         }
     }
-
-    override fun setupViewBinding(inflater: LayoutInflater): FragmentRegistrationBinding {
-        return FragmentRegistrationBinding.inflate(inflater)
-    }
-
 }

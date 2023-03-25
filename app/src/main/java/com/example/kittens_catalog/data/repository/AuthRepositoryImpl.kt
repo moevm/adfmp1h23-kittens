@@ -1,7 +1,9 @@
 package com.example.kittens_catalog.data.repository
 import android.content.SharedPreferences
+import com.example.kittens_catalog.data.mappers.mapper
 import com.example.kittens_catalog.data.network.api.AuthApi
 import com.example.kittens_catalog.data.network.models.*
+import com.example.kittens_catalog.domain.entity.KittenInfo
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -46,7 +48,7 @@ class AuthRepositoryImpl @Inject constructor(
         return authApi.getBreeds().execute().body()
     }
 
-    override fun getOne(id: Int): KittenItem? {
-        return authApi.getOne(id).execute().body()
+    override fun getOne(id: Int): KittenInfo? {
+        return authApi.getOne(id).execute().body().mapper()
     }
 }
