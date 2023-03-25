@@ -59,6 +59,9 @@
         <action
             android:id="@+id/action_kittenListFragment_to_kittenFragment"
             app:destination="@id/kittenFragment" />
+        <action
+            android:id="@+id/action_kittenListFragment_to_kittenCreateFragment"
+            app:destination="@id/kittenCreateFragment" />
     </fragment>
     <fragment
         android:id="@+id/kittenFragment"
@@ -75,4 +78,10 @@
         android:name="com.example.kittens_catalog.features.about.AboutItemFragment"
         android:label="fragment_about_item_list"
         tools:layout="@layout/fragment_about_item_list" />
+    <fragment
+        android:id="@+id/kittenCreateFragment"
+        android:name="com.example.kittens_catalog.features.kitten_create.KittenCreateFragment"
+        android:label="My kittens"
+        tools:layout="@layout/fragment_kitten_create"
+        />
 </navigation>

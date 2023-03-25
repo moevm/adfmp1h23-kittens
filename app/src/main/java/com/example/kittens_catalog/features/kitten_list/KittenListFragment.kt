@@ -1,6 +1,7 @@
 package com.example.kittens_catalog.features.kitten_list
 
 import android.annotation.SuppressLint
+import android.graphics.Path.Direction
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
@@ -53,6 +54,9 @@ class KittenListFragment : BaseFragment<FragmentKittenListBinding>(R.layout.frag
         if (args.type) {
             binding.addKittenButton.isVisible = true
             // тут короче код для переход на страничку добавления котика
+            binding.addKittenButton.setOnClickListener {
+                navigate(R.id.kittenListFragment, KittenListFragmentDirections.actionKittenListFragmentToKittenCreateFragment())
+            }
         }
 
         binding.slider.valueFrom = 0f
