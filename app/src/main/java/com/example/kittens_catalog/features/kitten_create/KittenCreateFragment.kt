@@ -31,7 +31,7 @@ class KittenCreateFragment : BaseFragment<FragmentKittenCreateBinding>(R.layout.
                 val myFormat = "yyyy-MM-dd"
 
                 val sdf = SimpleDateFormat(myFormat)
-                val date = sdf.parse(System.currentTimeMillis().toString())
+                val date = sdf.parse("2023-05-10")
                 val timeInMillis = date.time
 
                 val constraintBuilder = CalendarConstraints.Builder().setOpenAt(
@@ -39,7 +39,7 @@ class KittenCreateFragment : BaseFragment<FragmentKittenCreateBinding>(R.layout.
                 ).build()
 
                 val picker = MaterialDatePicker.Builder.datePicker()
-                    .setTitleText("Select Date")
+                    .setTitleText("Select date")
                     .setCalendarConstraints(constraintBuilder)
                     .build()
 
